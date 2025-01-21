@@ -2,14 +2,24 @@ const express = require("express");
 const cheerio = require("cheerio");
 const urlParser = require("url");
 const html2md = require("html-to-md");
-const { fetchWebpage, cleanHtml, extractMetadata } = require("./utils/webUtils");
+const path = require("path");
+const {
+  fetchWebpage,
+  cleanHtml,
+  extractMetadata,
+} = require("./utils/webUtils");
 const { MarkdownFormatter } = require("./components/MarkdownFormatter");
 const { TextSimplifier, Config } = require("./components/TextSimplifier");
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get("/convert", async (req, res) => {
+app.get("/", (req, res) => {
+  const filePath = path.join(__dirname, "views", "index.html");
+  res.status(200).sendFile(filePath);
+});
+
+app.get("/context", async (req, res) => {
   try {
     const { url, compress } = req.query;
 
@@ -60,6 +70,6 @@ app.listen(port, () => {
 
 module.exports = app;
 
-// http://localhost:3000/convert?url=https://basithahmed.me&compress=true&level=4
-// http://localhost:3000/convert?url=https://basithahmed.me&compress=true
-// http://localhost:3000/convert?url=https://basithahmed.me
+// http://localhost:3000/context?url=https://basithahmed.me&compress=true&level=4
+// http://localhost:3000/context?url=https://basithahmed.me&compress=true
+// http://localhost:3000/context?url=https://basithahmed.me

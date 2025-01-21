@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+      }
+      pre {
+        background-color: #f4f4f4;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: left;
+        overflow-x: auto;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      .checkbox-label {
+        display: block;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>ScrapIt API</h1>
+      <p>Generate low cost context for your LLM models.</p>
+        <pre>
+            <code>
+            GET /context?url=https://example.com&compress=true
+            </code>
+        </pre>
+      <form action="http://localhost:3000/context" method="GET">
+        <label for="url">Enter website URL:</label><br />
+        <input
+          type="text"
+          id="url"
+          name="url"
+          placeholder="https://example.com"
+        />
+        <br />
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <input type="checkbox" id="compress" name="compress" value="true" />
+          <label for="compress" class="checkbox-label">Compress output</label>
+        </div>
+        <br /><br />
+        <button type="submit">Generate</button>
+      </form>
+    </div>
+  </body>
+</html>
