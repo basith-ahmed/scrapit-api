@@ -40,17 +40,24 @@
         margin-top: 10px;
       }
     </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById(
+          "myForm"
+        ).action = `${window.location.origin}/context`;
+      });
+    </script>
   </head>
   <body>
     <div class="container">
       <h1>ScrapIt API</h1>
       <p>Generate low cost context for your LLM models.</p>
-        <pre>
+      <pre>
             <code>
             GET /context?url=https://example.com&compress=true
             </code>
         </pre>
-      <form action="http://localhost:3000/context" method="GET">
+      <form id="myForm" method="GET">
         <label for="url">Enter website URL:</label><br />
         <input
           type="text"
@@ -59,7 +66,9 @@
           placeholder="https://example.com"
         />
         <br />
-        <div style="display: flex; align-items: center; justify-content: center;">
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
           <input type="checkbox" id="compress" name="compress" value="true" />
           <label for="compress" class="checkbox-label">Compress output</label>
         </div>
